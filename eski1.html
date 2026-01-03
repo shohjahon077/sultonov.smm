@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Abdulaziz Sultonov </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&display=swap');
+
+        :root {
+            --glass: rgba(255, 255, 255, 0.02);
+            --border: rgba(255, 255, 255, 0.1);
+            --blur: blur(30px) saturate(200%);
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* 🎬 JONLI FON ANIMATSIYASI */
+        .animated-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(0, 122, 255, 0.15) 0%, transparent 50%);
+            transition: 0.2s linear;
+        }
+
+        /* 🍏 VISION OS GLASS */
+        .vision-card {
+            background: var(--glass);
+            backdrop-filter: var(--blur);
+            -webkit-backdrop-filter: var(--blur);
+            border: 1px solid var(--border);
+            border-radius: 35px;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .vision-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 122, 255, 0.4);
+            transform: translateY(-5px) scale(1.01);
+        }
+
+        /* 📱 MOBIL MOSLASHUVCHANLIK (GRID) */
+        .bento-stack {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
+
+        .col-span-8 { grid-column: span 8; }
+        .col-span-4 { grid-column: span 4; }
+
+        @media (max-width: 1024px) {
+            .bento-stack { grid-template-columns: 1fr; }
+            .col-span-8, .col-span-4 { grid-column: span 1; }
+            .hero-title { font-size: 12vw !important; }
+            .vision-card { border-radius: 28px; padding: 30px !important; }
+        }
+
+        /* ✨ TEXT & BUTTON ANIMATIONS */
+        .glow-button {
+            position: relative; overflow: hidden;
+            transition: 0.3s;
+        }
+        .glow-button:after {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            opacity: 0; transition: 0.5s;
+        }
+        .glow-button:hover:after { opacity: 1; transform: scale(1.2); }
+
+        .ios-gradient {
+            background: linear-gradient(180deg, #fff 30%, rgba(255, 255, 255, 0.4) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        #phoneModal {
+            position: fixed; inset: 0; z-index: 9999; display: none;
+            align-items: center; justify-content: center; background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(40px);
+        }
+    </style>
+</head>
+<body class="p-4 md:p-10 pt-32">
+
+    <div class="animated-bg" id="bg"></div>
+
+    <header class="fixed top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-[1000px] z-[1000] vision-card h-[64px] px-6 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-black italic text-xs">AS</div>
+            <span class="font-bold tracking-tighter hidden sm:block">SULTONOV</span>
+        </div>
+        <nav class="hidden md:flex gap-8 text-[11px] font-bold uppercase tracking-widest opacity-40">
+            <a href="#" class="hover:opacity-100 transition">Xush kelibsiz!</a>
+            <a href="#" class="hover:opacity-100 transition"></a>
+        </nav>
+        <button onclick="toggleModal(true)" class="bg-white text-black px-6 py-2 rounded-full text-[11px] font-extrabold glow-button">ALOQA</button>
+    </header>
+
+    <main class="max-w-6xl mx-auto space-y-6">
+        
+        <section class="vision-card p-12 md:p-24 text-center relative overflow-hidden" data-aos="zoom-out-up">
+            <div class="relative z-10">
+                <span class="text-[10px] font-bold tracking-[0.6em] text-blue-500 uppercase mb-8 block" data-aos="fade-up">Premium Production</span>
+                <h1 class="hero-title text-7xl md:text-9xl font-extrabold ios-gradient tracking-tighter mb-10 leading-none">
+                    Abdulaziz<br> Sultonov
+                </h1>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <button class="vision-card px-12 py-4 font-bold hover:bg-white/5">profisional</button>
+                    <button onclick="toggleModal(true)" class="bg-blue-600 text-white px-12 py-4 rounded-full font-bold shadow-2xl shadow-blue-500/30 glow-button">Hamkorlik</button>
+                </div>
+            </div>
+            <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-blue-600/10 blur-[100px] rounded-full"></div>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="vision-card p-10 text-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-layer-group text-blue-500 text-2xl"></i>
+                </div>
+                <h3 class="font-bold uppercase text-[10px] tracking-widest opacity-50">SMM Strategy</h3>
+            </div>
+            <div class="vision-card p-10 text-center" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-video text-blue-500 text-2xl"></i>
+                </div>
+                <h3 class="font-bold uppercase text-[10px] tracking-widest opacity-50">Mobilography</h3>
+            </div>
+            <div class="vision-card p-10 text-center" data-aos="fade-up" data-aos-delay="300">
+                <div class="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-bullseye text-blue-500 text-2xl"></i>
+                </div>
+                <h3 class="font-bold uppercase text-[10px] tracking-widest opacity-50">Targeting</h3>
+            </div>
+        </div>
+
+        <div class="bento-stack">
+            <div class="col-span-8 vision-card p-12 flex flex-col md:flex-row items-center justify-between gap-10" data-aos="fade-right">
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-bold mb-2">Ijtimoiy tarmoqlar</h3>
+                    <p class="text-gray-500 text-sm">Har kuni yangi kontent va g'oyalar.</p>
+                </div>
+                <div class="flex gap-8 text-3xl">
+                    <a href="https://instagram.com/1obunachii" target="_blank" class="hover:text-blue-500 transition-all hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    <a href="https://t.me/ssultanv" target="_blank" class="hover:text-blue-500 transition-all hover:scale-125"><i class="fab fa-telegram-plane"></i></a>
+                    <button onclick="toggleModal(true)" class="hover:text-blue-500 transition-all hover:scale-125"><i class="fas fa-phone"></i></button>
+                </div>
+            </div>
+
+            <div class="col-span-4 vision-card bg-white !text-black p-12 flex flex-col justify-between min-h-[250px] md:min-h-0" data-aos="fade-left">
+                <div class="flex justify-between items-start">
+                    <span class="text-[10px] font-black uppercase tracking-widest opacity-20">2026 Stat</span>
+                    <div class="w-10 h-10 bg-black/5 rounded-full flex items-center justify-center"><i class="fas fa-arrow-up-right-dots"></i></div>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-end">
+                        <span class="text-5xl font-extrabold tracking-tighter leading-none">150+</span>
+                        <span class="text-[9px] font-bold uppercase opacity-40">Loyihalar</span>
+                    </div>
+                    <div class="h-[1px] bg-black/5 w-full"></div>
+                    <div class="flex justify-between items-end">
+                        <span class="text-5xl font-extrabold tracking-tighter leading-none">20M</span>
+                        <span class="text-[9px] font-bold uppercase opacity-40">Ko'rishlar</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-20 text-center opacity-10 text-[9px] font-bold tracking-[1em] uppercase">
+        Yaratuvchi shohjahon mahkamov instagram  @shohcore12
+    </footer>
+
+    <div id="phoneModal" onclick="toggleModal(false)">
+        <div class="vision-card p-12 text-center max-w-sm w-[90%] mx-auto relative scale-90 opacity-0 transition-all duration-500" id="modalBox" onclick="event.stopPropagation()">
+            <div class="w-20 h-20 bg-blue-600/10 rounded-3xl flex items-center justify-center mx-auto mb-8 text-blue-500 text-3xl shadow-inner">
+                <i class="fas fa-phone"></i>
+            </div>
+            <h2 class="text-3xl font-extrabold mb-4 tracking-tight">Aloqa</h2>
+            <p class="text-gray-500 text-sm mb-10 leading-relaxed">Biz bilan bog'laning va loyihangizni <br> muhokama qilamiz.</p>
+            <a href="tel:+998901717713" class="text-2xl font-black text-blue-500 block mb-10 hover:scale-105 transition">+998 90 171 77 13</a>
+            <button onclick="toggleModal(false)" class="text-[10px] font-black uppercase tracking-[0.3em] opacity-30">Yopish</button>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        // 🖱 DYNAMIC MOUSE GLOW
+        const bg = document.getElementById('bg');
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth) * 100;
+            const y = (e.clientY / window.innerHeight) * 100;
+            bg.style.setProperty('--x', x + '%');
+            bg.style.setProperty('--y', y + '%');
+        });
+
+        // MODAL SYSTEM
+        function toggleModal(show) {
+            const modal = document.getElementById('phoneModal');
+            const box = document.getElementById('modalBox');
+            if (show) {
+                modal.style.display = 'flex';
+                setTimeout(() => {
+                    box.classList.remove('scale-90', 'opacity-0');
+                    box.classList.add('scale-100', 'opacity-100');
+                }, 20);
+            } else {
+                box.classList.remove('scale-100', 'opacity-100');
+                box.classList.add('scale-90', 'opacity-0');
+                setTimeout(() => modal.style.display = 'none', 500);
+            }
+        }
+    </script>
+</body>
+</html>
